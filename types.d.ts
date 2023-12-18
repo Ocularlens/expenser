@@ -9,11 +9,11 @@ type User = {
 };
 
 type Transaction = {
-  id: number,
+  id?: number,
   userId: number,
   amount: number,
   description: string,
   type: string,
-  createdDate: Date,
-  updatedDate: Date
+  createdDate?: Date,
+  updatedDate?: Date
 };
