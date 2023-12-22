@@ -2,6 +2,7 @@
 import createTransaction from "@/lib/actions/createTransaction";
 import { capitalize } from "@/lib/utils/capitalize";
 import { createTransactionSchema } from "@/lib/validationSchema/createTransactionSchema";
+import { revalidatePath } from "next/cache";
 
 export async function newTransaction(prevState: any, formData: FormData) {
   const transactionForm = {
@@ -33,6 +34,6 @@ export async function newTransaction(prevState: any, formData: FormData) {
   });
 
   if (!newTransaction) return { message: "Server Error" };
-
+  revalidatePath("/transactions");
   return { message: "Success" };
 }

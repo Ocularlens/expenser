@@ -55,8 +55,10 @@ export default function TransactionForm({ userId }: Props) {
 
   useEffect(() => {
     console.log(actionState);
-    if (actionState?.message === "Success")
+    if (actionState?.message === "Success") {
       setFormState((prevState) => ({ ...formInitialState }));
+    }
+      
   }, [actionState]);
 
   return (

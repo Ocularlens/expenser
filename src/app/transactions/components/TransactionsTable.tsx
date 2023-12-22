@@ -30,14 +30,13 @@ export default function TransactionsTable({ transactions }: Props) {
                   : "text-red-500";
 
               return (
-                <tr
-                  key={index}
-                  className={`bg-white ${isGreen}`}
-                >
+                <tr key={index} className={`bg-white ${isGreen}`}>
                   <td>{transaction.description}</td>
                   <td>{transaction.amount}</td>
                   <td>{transaction.type}</td>
-                  <td>{transaction.createdDate?.toISOString().split("T")[0]}</td>
+                  <td>
+                    {transaction.createdDate?.toISOString().split("T")[0]}
+                  </td>
                 </tr>
               );
             })}

@@ -1,6 +1,10 @@
+import getUserTransactions, {
+  countUserTransactions,
+} from "@/lib/actions/getUserTransactions";
 import type { Metadata } from "next";
 import { getServerSession } from "next-auth";
 import { options } from "../api/auth/[...nextauth]/options";
+import Pagination from "../components/Pagination";
 import TransactionForm from "./components/TransactionForm";
 import TransactionsTable from "./components/TransactionsTable";
 
@@ -9,29 +13,24 @@ export const metadata: Metadata = {
   description: "Transactions Page",
 };
 
-export default async function TransactionsPage() {
-  const transactions: Transaction[] = [
-    {
-      id: 1,
-      userId: 2,
-      amount: 200,
-      description: "Test Data",
-      type: "INCOME",
-      createdDate: new Date(),
-      updatedDate: new Date(),
-    },
-    {
-      id: 2,
-      userId: 2,
-      amount: 200,
-      description: "Test Data",
-      type: "EXPENSE",
-      createdDate: new Date(),
-      updatedDate: new Date(),
-    },
-  ];
+type Props = {
+  searchParams: {
+    page: string;
+  };
+};
+
+export default async function TransactionsPage({
+  searchParams: { page },
+}: Props) {
+  const activePage = page ? Number(page) : 1;
 
   const session = await getServerSession(options);
+
+  const count = await countUserTransactions(session?.user?.id);
+  const transactions: Transaction[] = await getUserTransactions(
+    session?.user?.id,
+    Number(activePage)
+  );
 
   return (
     <div className="md:grid md:grid-cols-2 gap-4">
@@ -49,6 +48,7 @@ export default async function TransactionsPage() {
         </div>
         <div>
           <TransactionsTable transactions={transactions} />
+          <Pagination page={activePage} totalPages={Math.ceil(count / 10)} />
         </div>
       </div>
     </div>

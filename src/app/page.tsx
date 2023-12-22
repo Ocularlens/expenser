@@ -1,4 +1,3 @@
-import getUserTransactions from "@/lib/actions/getUserTransactions";
 import MonthSelect from "./components/MonthSelect";
 
 type Props = {
@@ -8,11 +7,6 @@ type Props = {
 };
 
 export default async function Home({ searchParams: { month } }: Props) {
-  const transactions: Transaction[] = await getUserTransactions(
-    0,
-    Number(month)
-  );
-
   return (
     <div className="md:grid md:grid-cols-2 gap-4">
       <div className="border rounded-lg border-gray-200 p-4 md:mt-4 md:col-span-2">
