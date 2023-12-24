@@ -54,7 +54,6 @@ export default function TransactionForm({ userId }: Props) {
   }
 
   useEffect(() => {
-    console.log(actionState);
     if (actionState?.message === "Success") {
       setFormState((prevState) => ({ ...formInitialState }));
     }
@@ -82,7 +81,7 @@ export default function TransactionForm({ userId }: Props) {
       <textarea
         placeholder="Description"
         name="description"
-        className="border rounded-md p-2 w-full mb-2"
+        className="border rounded-md p-2 w-full mb-2 h-56"
         value={formState.description}
         onChange={(e) => {
           setFormState((prevData) => ({

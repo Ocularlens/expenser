@@ -14,8 +14,6 @@ export default function Pagination({ page: activePage, totalPages }: Props) {
     router.push(`?page=${page}`);
   };
 
-  console.log({ activePage });
-
   const pages = [];
   for (let ctr = 0; ctr < totalPages; ctr++) {
     const isActive = ctr + 1 === activePage ? "text-cyan-200" : "";

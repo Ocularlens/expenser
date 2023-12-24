@@ -16,7 +16,11 @@ const MONTHS = [
   "December",
 ];
 
-export default function MonthSelect() {
+type Props = {
+  monthIndex: number;
+};
+
+export default function MonthSelect({ monthIndex }: Props) {
   const router = useRouter();
 
   const handleChange = async (e: any) => {
@@ -27,6 +31,7 @@ export default function MonthSelect() {
     <select
       className="border rounded-md w-full text-2xl md:w-auto"
       onChange={handleChange}
+      value={monthIndex}
     >
       {MONTHS.map((month, index) => (
         <option key={index} value={index + 1}>

@@ -7,7 +7,7 @@ type Props = {
 export default function TransactionsTable({ transactions }: Props) {
   return (
     <div className="relative overflow-x-auto">
-      <table className="w-full text-md text-left rtl:text-right">
+      <table className="w-full text-left rtl:text-right">
         <thead className="text-black uppercase">
           <tr>
             {TABLE_HEADERS.map((header, index) => (
@@ -30,7 +30,7 @@ export default function TransactionsTable({ transactions }: Props) {
                   : "text-red-500";
 
               return (
-                <tr key={index} className={`bg-white ${isGreen}`}>
+                <tr key={index} className={`bg-white ${isGreen} `}>
                   <td>{transaction.description}</td>
                   <td>{transaction.amount}</td>
                   <td>{transaction.type}</td>

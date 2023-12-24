@@ -23,12 +23,12 @@ export default async function TransactionsPage({
   searchParams: { page },
 }: Props) {
   const activePage = page ? Number(page) : 1;
-
   const session = await getServerSession(options);
+  const userId = session?.user?.id as number;
 
   const count = await countUserTransactions(session?.user?.id);
   const transactions: Transaction[] = await getUserTransactions(
-    session?.user?.id,
+    userId,
     Number(activePage)
   );
 
@@ -39,7 +39,7 @@ export default async function TransactionsPage({
           Add Transaction
         </div>
         <div>
-          <TransactionForm userId={session?.user?.id} />
+          <TransactionForm userId={userId} />
         </div>
       </div>
       <div className="border rounded-lg border-gray-200 p-4 mt-4 md:mt-0">
