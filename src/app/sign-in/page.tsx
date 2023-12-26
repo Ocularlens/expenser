@@ -6,14 +6,20 @@ export const metadata: Metadata = {
   description: "Signin Page",
 };
 
-export default function SigninPage() {
+type Props = {
+  searchParams: {
+    error: string;
+  };
+};
+
+export default function SigninPage({ searchParams: { error } }: Props) {
   return (
     <div className="flex justify-center">
       <div className="border rounded-lg border-gray-200 p-4 mt-4 md:mt-0 md:w-2/4">
         <div className="mb-3 text-3xl font-bold dark:text-slate-500">
-          Sign Up
+          Sign In
         </div>
-        <SigninForm />
+        <SigninForm error={error} />
       </div>
     </div>
   );

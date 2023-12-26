@@ -1,10 +1,12 @@
-import md5 from 'md5';
+import * as bcrypt from "bcrypt";
 import User from "../models/user";
 
 export default async function createUser(userData: User) {
-  const hashPassword = md5(userData.password);
+  const hashPassword = await bcrypt.hash(userData.password, 10);
 
-  const user: User = await User.create({ data: {...userData, password: hashPassword } });
+  const user: User = await User.create({
+    data: { ...userData, password: hashPassword },
+  });
 
   return user;
 }

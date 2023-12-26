@@ -4,7 +4,7 @@ import { loginSchema } from "@/lib/validationSchema/loginSchema";
 export async function submitForm(prevState: any, formData: FormData) {
   const userForm = {
     username: formData.get("username") as string,
-    fullname: formData.get("fullname") as string,
+    password: formData.get("password") as string,
   };
 
   const { error } = loginSchema.validate(userForm, { abortEarly: false });

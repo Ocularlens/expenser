@@ -26,7 +26,7 @@ export default async function TransactionsPage({
   const session = await getServerSession(options);
   const userId = session?.user?.id as number;
 
-  const count = await countUserTransactions(session?.user?.id);
+  const count = await countUserTransactions(userId);
   const transactions: Transaction[] = await getUserTransactions(
     userId,
     Number(activePage)
